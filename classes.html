@@ -1,0 +1,392 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" href="cmtc_icon.png" sizes="192x192">
+    <title>สาขาที่เปิดสอน - วิทยาลัยเทคนิคเชียงใหม่</title>
+    <script src="https://unpkg.com/@tailwindcss/browser@4"></script>
+    <!-- Add Sarabun Font -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+Thai:wght@100;200;300;400;500;600;700&family=Noto+Sans+Thai:wght@100..900&family=Sarabun:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800&display=swap"
+        rel="stylesheet">
+    <style>
+        body {
+            font-family: "Noto Sans Thai", serif;
+            font-style: normal;
+        }
+
+        /* Department card hover effects */
+        .department-card {
+            transition: all 0.3s ease;
+        }
+
+        .department-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+        }
+
+        .department-image {
+            transition: all 0.5s ease;
+        }
+
+        .department-card:hover .department-image {
+            transform: scale(1.1);
+        }
+
+        /* Badge styles */
+        .level-badge {
+            background: linear-gradient(135deg, #dc2626, #991b1b);
+            transition: all 0.3s ease;
+        }
+
+        .department-card:hover .level-badge {
+            transform: translateX(5px);
+        }
+
+        /* Social media icons hover effect */
+        .social-icon {
+            transition: all 0.3s ease;
+        }
+
+        .social-icon:hover {
+            transform: translateY(-5px) scale(1.1);
+        }
+    </style>
+</head>
+
+<body class="bg-gray-50">
+    <!-- Navbar -->
+    <nav class="bg-red-700 shadow-lg sticky top-0 z-50">
+        <div class="max-w-6xl mx-auto px-4">
+            <div class="flex justify-between">
+                <div class="flex space-x-7">
+                    <div>
+                        <a href="index.html" class="flex items-center py-4 gap-x-3">
+                            <img src="cmtc_icon2.png" alt="logo" class="h-14 w-70 rounded-full">
+                        </a>
+                    </div>
+                </div>
+                <div class="hidden md:flex items-center space-x-3">
+                    <a href="index.html"
+                        class="py-4 px-2 text-white hover:text-red-200 transition duration-300">หน้าแรก</a>
+                    <a href="administrator.html"
+                        class="py-4 px-2 text-white hover:text-red-200 transition duration-300">ข้อมูลผู้บริหาร</a>
+                    <a href="teacher.html"
+                        class="py-4 px-2 text-white hover:text-red-200 transition duration-300">ข้อมูลบุคลากร</a>
+                    <a href="about.html"
+                        class="py-4 px-2 text-white hover:text-red-200 transition duration-300">ข้อมูลนักเรียน</a>
+                    <a href="classes.html"
+                        class="py-4 px-2 text-white font-bold border-b-4 border-red-200">สาขาที่เปิดสอน</a>
+                </div>
+                <div class="md:hidden flex items-center">
+                    <button class="outline-none mobile-menu-button">
+                        <svg class="w-6 h-6 text-white hover:text-red-200" fill="none" stroke-linecap="round"
+                            stroke-linejoin="round" stroke-width="2" viewBox="0 0 24 24" stroke="currentColor">
+                            <path d="M4 6h16M4 12h16M4 18h16"></path>
+                        </svg>
+                    </button>
+                </div>
+            </div>
+        </div>
+        <div class="hidden mobile-menu md:hidden">
+            <ul class="px-2 pt-2 pb-3 space-y-1 sm:px-3">
+                <li><a href="index.html" 
+                    class="text-white hover:bg-red-700 block px-3 py-2 rounded-md">หน้าแรก</a></li>
+                <li><a href="administrator.html"
+                    class="text-white hover:bg-red-700 block px-3 py-2 rounded-md">ข้อมูลผู้บริหาร</a></li>
+                <li><a href="teacher.html"
+                    class="text-white hover:bg-red-700 block px-3 py-2 rounded-md">ข้อมูลบุคลากร</a></li>
+                <li><a href="about.html"
+                    class="text-white hover:bg-red-700 block px-3 py-2 rounded-md">ข้อมูลนักเรียน</a></li>
+                <li><a href="classes.html"
+                    class="bg-red-700 text-white block px-3 py-2 rounded-md">สาขาที่เปิดสอน</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- Header Section -->
+    <div class="bg-gradient-to-r from-red-600 to-red-700 py-20">
+        <div class="max-w-7xl mx-auto px-4 relative z-10">
+            <h1 class="text-5xl md:text-6xl font-bold text-white text-center mb-6 tracking-tight leading-tight">
+                สาขาที่เปิดสอน</h1>
+            <p class="text-xl md:text-2xl text-white/90 text-center max-w-3xl mx-auto leading-relaxed">
+                วิทยาลัยเทคนิคเชียงใหม่
+            </p>
+        </div>
+    </div>
+
+    <!-- Departments Grid -->
+    <div class="max-w-7xl mx-auto px-4 py-20">
+        <!-- Department Categories -->
+        <div class="mb-16">
+            <div class="text-center">
+                <h2 class="text-3xl font-bold text-gray-800 mb-4">ระดับประกาศนียบัตรวิชาชีพ (ปวช.) และประกาศนียบัตรวิชาชีพชั้นสูง (ปวส.)</h2>
+                <p class="text-gray-600 max-w-2xl mx-auto">เรียนรู้และพัฒนาทักษะวิชาชีพกับวิทยาลัยเทคนิคเชียงใหม่ สถาบันการศึกษาชั้นนำด้านอาชีวศึกษาของภาคเหนือ</p>
+            </div>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10">
+            <!-- แผนกวิชาเทคโนโลยีสารสนเทศ -->
+            <div class="department-card bg-white rounded-xl shadow-lg overflow-hidden group">
+                <div class="relative h-64 overflow-hidden">
+                    <img src="895663_0.jpg" alt="แผนกวิชาเทคโนโลยีสารสนเทศ" 
+                        class="department-image w-full h-full object-cover transform group-hover:scale-110 transition-transform duration-500">
+                    <div class="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent"></div>
+                    <span class="level-badge absolute top-4 right-4 px-4 py-2 rounded-full text-white text-sm font-semibold backdrop-blur-sm bg-red-600/80">
+                        ปวส.
+                    </span>
+                </div>
+                <div class="p-6 relative">
+                    <div class="absolute -top-8 left-6 bg-red-600 text-white p-3 rounded-lg shadow-lg">
+                        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9.75 17L9 20l-1 1h8l-1-1-.75-3M3 13h18M5 17h14a2 2 0 002-2V5a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
+                        </svg>
+                    </div>
+                    <h3 class="text-2xl font-bold text-gray-800 mb-3 mt-2">แผนกวิชาเทคโนโลยีสารสนเทศ</h3>
+                    <p class="text-gray-600 mb-4">พัฒนาทักษะด้านเทคโนโลยีสารสนเทศ การเขียนโปรแกรม และการพัฒนาระบบ</p>
+                    <div class="flex items-center justify-between">
+                        <div class="flex items-center text-sm text-gray-500">
+                            <svg class="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
+                            </svg>
+                            <span>2 ปี</span>
+                        </div>
+                        <span class="text-sm font-medium text-red-600">รับสมัครทุกปีการศึกษา</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- แผนกวิชาช่างยนต์ -->
+            <div class="department-card bg-white rounded-xl shadow-lg overflow-hidden group">
+                <div class="relative h-64 overflow-hidden">
+                    <img src="images (2).jpg" alt="แผนกวิชาช่างยนต์" 
+                        class="department-image w-full h-full object-cover transform group-hover:scale-110 transition-transform duration-500">
+                    <div class="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent"></div>
+                    <span class="level-badge absolute top-4 right-4 px-4 py-2 rounded-full text-white text-sm font-semibold backdrop-blur-sm bg-red-600/80">
+                        ปวช./ปวส.
+                    </span>
+                </div>
+                <div class="p-6 relative">
+                    <div class="absolute -top-8 left-6 bg-red-600 text-white p-3 rounded-lg shadow-lg">
+                        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253" />
+                        </svg>
+                    </div>
+                    <h3 class="text-2xl font-bold text-gray-800 mb-3 mt-2">แผนกวิชาช่างยนต์</h3>
+                    <p class="text-gray-600 mb-4">เรียนรู้การซ่อมบำรุงและการจัดการระบบยานยนต์สมัยใหม่ เครื่องยนต์ไฟฟ้า</p>
+                    <div class="flex items-center justify-between">
+                        <div class="flex items-center text-sm text-gray-500">
+                            <svg class="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
+                            </svg>
+                            <span>3 ปี / 2 ปี</span>
+                        </div>
+                        <span class="text-sm font-medium text-red-600">รับสมัครทุกปีการศึกษา</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- แผนกวิชาช่างไฟฟ้า -->
+            <div class="department-card bg-white rounded-xl shadow-lg overflow-hidden group">
+                <div class="relative h-64 overflow-hidden">
+                    <img src="images (3).jpg" alt="แผนกวิชาช่างไฟฟ้า" 
+                        class="department-image w-full h-full object-cover transform group-hover:scale-110 transition-transform duration-500">
+                    <div class="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent"></div>
+                    <span class="level-badge absolute top-4 right-4 px-4 py-2 rounded-full text-white text-sm font-semibold backdrop-blur-sm bg-red-600/80">
+                        ปวช./ปวส.
+                    </span>
+                </div>
+                <div class="p-6 relative">
+                    <div class="absolute -top-8 left-6 bg-red-600 text-white p-3 rounded-lg shadow-lg">
+                        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z" />
+                        </svg>
+                    </div>
+                    <h3 class="text-2xl font-bold text-gray-800 mb-3 mt-2">แผนกวิชาช่างไฟฟ้า</h3>
+                    <p class="text-gray-600 mb-4">ศึกษาระบบไฟฟ้า การติดตั้ง และการควบคุมระบบไฟฟ้าอุตสาหกรรม</p>
+                    <div class="flex items-center justify-between">
+                        <div class="flex items-center text-sm text-gray-500">
+                            <svg class="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
+                            </svg>
+                            <span>3 ปี / 2 ปี</span>
+                        </div>
+                        <span class="text-sm font-medium text-red-600">รับสมัครทุกปีการศึกษา</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- แผนกวิชาช่างอิเล็กทรอนิกส์ -->
+            <div class="department-card bg-white rounded-xl shadow-lg overflow-hidden group">
+                <div class="relative h-64 overflow-hidden">
+                    <img src="images (4).jpg" alt="แผนกวิชาช่างอิเล็กทรอนิกส์" 
+                        class="department-image w-full h-full object-cover transform group-hover:scale-110 transition-transform duration-500">
+                    <div class="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent"></div>
+                    <span class="level-badge absolute top-4 right-4 px-4 py-2 rounded-full text-white text-sm font-semibold backdrop-blur-sm bg-red-600/80">
+                        ปวช./ปวส.
+                    </span>
+                </div>
+                <div class="p-6 relative">
+                    <div class="absolute -top-8 left-6 bg-red-600 text-white p-3 rounded-lg shadow-lg">
+                        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 3v2m6-2v2M9 19v2m6-2v2M5 9H3m2 6H3m18-6h-2m2 6h-2M7 19h10a2 2 0 002-2V7a2 2 0 00-2-2H7a2 2 0 00-2 2v10a2 2 0 002 2zM9 9h6v6H9V9z" />
+                        </svg>
+                    </div>
+                    <h3 class="text-2xl font-bold text-gray-800 mb-3 mt-2">แผนกวิชาช่างอิเล็กทรอนิกส์</h3>
+                    <p class="text-gray-600 mb-4">เรียนรู้การออกแบบและซ่อมบำรุงระบบอิเล็กทรอนิกส์ และระบบควบคุมอัตโนมัติ</p>
+                    <div class="flex items-center justify-between">
+                        <div class="flex items-center text-sm text-gray-500">
+                            <svg class="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
+                            </svg>
+                            <span>3 ปี / 2 ปี</span>
+                        </div>
+                        <span class="text-sm font-medium text-red-600">รับสมัครทุกปีการศึกษา</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- แผนกวิชาช่างก่อสร้าง -->
+            <div class="department-card bg-white rounded-xl shadow-lg overflow-hidden group">
+                <div class="relative h-64 overflow-hidden">
+                    <img src="images (5).jpg" alt="แผนกวิชาช่างก่อสร้าง" 
+                        class="department-image w-full h-full object-cover transform group-hover:scale-110 transition-transform duration-500">
+                    <div class="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent"></div>
+                    <span class="level-badge absolute top-4 right-4 px-4 py-2 rounded-full text-white text-sm font-semibold backdrop-blur-sm bg-red-600/80">
+                        ปวช./ปวส.
+                    </span>
+                </div>
+                <div class="p-6 relative">
+                    <div class="absolute -top-8 left-6 bg-red-600 text-white p-3 rounded-lg shadow-lg">
+                        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4" />
+                        </svg>
+                    </div>
+                    <h3 class="text-2xl font-bold text-gray-800 mb-3 mt-2">แผนกวิชาช่างก่อสร้าง</h3>
+                    <p class="text-gray-600 mb-4">เรียนรู้การออกแบบ ก่อสร้าง และควบคุมงานก่อสร้างอาคาร</p>
+                    <div class="flex items-center justify-between">
+                        <div class="flex items-center text-sm text-gray-500">
+                            <svg class="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
+                            </svg>
+                            <span>3 ปี / 2 ปี</span>
+                        </div>
+                        <span class="text-sm font-medium text-red-600">รับสมัครทุกปีการศึกษา</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- แผนกวิชาช่างการบัญชี -->
+            <div class="department-card bg-white rounded-xl shadow-lg overflow-hidden group">
+                <div class="relative h-64 overflow-hidden">
+                    <img src="2025-01-29_21-44-08_0.jpeg" alt="แผนกวิชาการบัญชี" 
+                        class="department-image w-full h-full object-cover transform group-hover:scale-110 transition-transform duration-500">
+                    <div class="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent"></div>
+                    <span class="level-badge absolute top-4 right-4 px-4 py-2 rounded-full text-white text-sm font-semibold backdrop-blur-sm bg-red-600/80">
+                        ปวช./ปวส.
+                    </span>
+                </div>
+                <div class="p-6 relative">
+                    <div class="absolute -top-8 left-6 bg-red-600 text-white p-3 rounded-lg shadow-lg">
+                        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 7h6m0 10v-3m-3 3h.01M9 17h.01M9 14h.01M12 14h.01M15 11h.01M12 11h.01M9 11h.01M7 21h10a2 2 0 002-2V5a2 2 0 00-2-2H7a2 2 0 00-2 2v14a2 2 0 002 2z" />
+                        </svg>
+                    </div>
+                    <h3 class="text-2xl font-bold text-gray-800 mb-3 mt-2">แผนกวิชาการบัญชี</h3>
+                    <p class="text-gray-600 mb-4">เรียนรู้การจัดทำบัญชี การวิเคราะห์งบการเงิน และระบบบัญชีดิจิทัล</p>
+                    <div class="flex items-center justify-between">
+                        <div class="flex items-center text-sm text-gray-500">
+                            <svg class="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
+                            </svg>
+                            <span>3 ปี / 2 ปี</span>
+                        </div>
+                        <span class="text-sm font-medium text-red-600">รับสมัครทุกปีการศึกษา</span>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+    <!-- ส่วนช่องทางติดต่อ -->
+    <div class="bg-gray-50 py-7">
+        <div class="max-w-7xl mx-auto px-4">
+            <h2 class="text-4xl font-bold text-red-700 mb-12 text-center">ติดตามเราได้ที่</h2>
+            <div class="flex justify-center space-x-10">
+                <!-- Facebook -->
+                <a href="#" class="social-icon group">
+                    <div class="bg-white p-4 rounded-full shadow-lg group-hover:bg-red-600 transition-all duration-300">
+                        <svg class="w-8 h-8 text-gray-600 group-hover:text-white" fill="currentColor"
+                            viewBox="0 0 24 24">
+                            <path
+                                d="M22 12c0-5.523-4.477-10-10-10S2 6.477 2 12c0 4.991 3.657 9.128 8.438 9.878v-6.987h-2.54V12h2.54V9.797c0-2.506 1.492-3.89 3.777-3.89 1.094 0 2.238.195 2.238.195v2.46h-1.26c-1.243 0-1.63.771-1.63 1.562V12h2.773l-.443 2.89h-2.33v6.988C18.343 21.128 22 16.991 22 12z" />
+                        </svg>
+                    </div>
+
+                </a>
+
+                <!-- Line -->
+                <a href="#" class="social-icon group">
+                    <div class="bg-white p-4 rounded-full shadow-lg group-hover:bg-red-600 transition-all duration-300">
+                        <svg class="w-8 h-8 text-gray-600 group-hover:text-white" fill="currentColor"
+                            viewBox="0 0 24 24">
+                            <path
+                                d="M19.365 9.863c.349 0 .63.285.631.631 0 .345-.281.63-.63.63H17.61v1.125h1.755c.349 0 .63.283.63.63 0 .344-.281.629-.63.629h-2.386c-.345 0-.627-.285-.627-.629V8.108c0-.345.282-.63.63-.63h2.386c.346 0 .627.285.627.63 0 .349-.281.63-.63.63H17.61v1.125h1.755zm-3.855 3.016c0 .27-.174.51-.432.596-.064.021-.133.031-.199.031-.211 0-.391-.09-.51-.25l-2.443-3.317v2.94c0 .344-.279.629-.631.629-.346 0-.626-.285-.626-.629V8.108c0-.27.173-.51.43-.595.06-.023.136-.033.194-.033.195 0 .375.104.495.254l2.462 3.33V8.108c0-.345.282-.63.63-.63.345 0 .63.285.63.63v4.771zm-5.741 0c0 .344-.282.629-.631.629-.345 0-.627-.285-.627-.629V8.108c0-.345.282-.63.63-.63.346 0 .628.285.628.63v4.771zm-2.466.629H4.917c-.345 0-.63-.285-.63-.629V8.108c0-.345.285-.63.63-.63.348 0 .63.285.63.63v4.141h1.756c.348 0 .629.283.629.63 0 .344-.282.629-.629.629M24 10.314C24 4.943 18.615.572 12 .572S0 4.943 0 10.314c0 4.811 4.27 8.842 10.035 9.608.391.082.923.258 1.058.59.12.301.079.766.038 1.08l-.164 1.02c-.045.301-.24 1.186 1.049.645 1.291-.539 6.916-4.078 9.436-6.975C23.176 14.393 24 12.458 24 10.314" />
+                        </svg>
+                    </div>
+
+                </a>
+
+                <!-- YouTube -->
+                <a href="#" class="social-icon group">
+                    <div class="bg-white p-4 rounded-full shadow-lg group-hover:bg-red-600 transition-all duration-300">
+                        <svg class="w-8 h-8 text-gray-600 group-hover:text-white" fill="currentColor"
+                            viewBox="0 0 24 24">
+                            <path
+                                d="M19.615 3.184c-3.604-.246-11.631-.245-15.23 0-3.897.266-4.356 2.62-4.385 8.816.029 6.185.484 8.549 4.385 8.816 3.6.245 11.626.246 15.23 0 3.897-.266 4.356-2.62 4.385-8.816-.029-6.185-.484-8.549-4.385-8.816zm-10.615 12.816v-8l8 3.993-8 4.007z" />
+                        </svg>
+                    </div>
+
+                </a>
+
+                <!-- TikTok -->
+                <a href="#" class="social-icon group">
+                    <div class="bg-white p-4 rounded-full shadow-lg group-hover:bg-red-600 transition-all duration-300">
+                        <svg class="w-8 h-8 text-gray-600 group-hover:text-white" fill="currentColor"
+                            viewBox="0 0 24 24">
+                            <path
+                                d="M19.59 6.69a4.83 4.83 0 01-3.77-4.25V2h-3.45v13.67a2.89 2.89 0 01-5.2 1.74 2.89 2.89 0 012.31-4.64 2.93 2.93 0 01.88.13V9.4a6.84 6.84 0 00-1-.05A6.33 6.33 0 005 20.1a6.34 6.34 0 0010.86-4.43v-7a8.16 8.16 0 004.77 1.52v-3.4a4.85 4.85 0 01-1-.1z" />
+                        </svg>
+                    </div>
+                </a>
+
+                <!-- TikTok -->
+                <a href="#" class="social-icon group">
+                    <div class="bg-white p-4 rounded-full shadow-lg group-hover:bg-red-600 transition-all duration-300">
+                        <svg class="w-8 h-8 text-gray-600 group-hover:text-white" fill="currentColor"
+                            viewBox="0 0 24 24">
+                            <path
+                                d="M19.59 6.69a4.83 4.83 0 01-3.77-4.25V2h-3.45v13.67a2.89 2.89 0 01-5.2 1.74 2.89 2.89 0 012.31-4.64 2.93 2.93 0 01.88.13V9.4a6.84 6.84 0 00-1-.05A6.33 6.33 0 005 20.1a6.34 6.34 0 0010.86-4.43v-7a8.16 8.16 0 004.77 1.52v-3.4a4.85 4.85 0 01-1-.1z" />
+                        </svg>
+                    </div>
+                </a>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Mobile menu toggle
+        const btn = document.querySelector("button.mobile-menu-button");
+        const menu = document.querySelector(".mobile-menu");
+        btn.addEventListener("click", () => {
+            menu.classList.toggle("hidden");
+        });
+    </script>
+</body>
+
+</html>

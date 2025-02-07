@@ -1,0 +1,542 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" href="cmtc_icon.png" sizes="192x192">
+    <title>ผู้บริหาร - วิทยาลัยเทคนิคเชียงใหม่</title>
+    <script src="https://unpkg.com/@tailwindcss/browser@4"></script>
+    <!-- Add Sarabun Font -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+Thai:wght@100;200;300;400;500;600;700&family=Noto+Sans+Thai:wght@100..900&family=Sarabun:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800&display=swap"
+        rel="stylesheet">
+    <style>
+        body {
+            font-family: "Noto Sans Thai", serif;
+            font-style: normal;
+        }
+
+        /* Hero section gradient overlay */
+        .hero-overlay {
+            background: linear-gradient(rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.4));
+        }
+
+        /* Slider styles */
+        .swiper {
+            width: 100%;
+            height: 600px;
+            border-radius: 20px;
+            box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
+        }
+
+        .swiper-slide {
+            position: relative;
+            overflow: hidden;
+            border-radius: 20px;
+        }
+
+        .swiper-slide::after {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(to bottom, transparent 60%, rgba(0, 0, 0, 0.5));
+            transition: opacity 0.3s ease;
+        }
+
+        .swiper-slide:hover::after {
+            opacity: 0.7;
+        }
+
+        .swiper-slide img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.3s ease;
+        }
+
+        .swiper-slide:hover img {
+            transform: scale(1.05);
+        }
+
+        .swiper-pagination-bullet {
+            width: 40px;
+            height: 5px;
+            background: #dc2626;
+            border-radius: 5px;
+            opacity: 0.5;
+            transition: all 0.3s ease;
+        }
+
+        .swiper-pagination-bullet-active {
+            opacity: 1;
+            width: 60px;
+            background: #dc2626;
+        }
+
+        .swiper-button-next,
+        .swiper-button-prev {
+            background-color: rgba(255, 255, 255, 0.95);
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            color: #dc2626 !important;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+
+        .swiper-button-next:hover,
+        .swiper-button-prev:hover {
+            background-color: #dc2626;
+            color: white !important;
+            transform: scale(1.1);
+        }
+
+        .swiper-button-next:after,
+        .swiper-button-prev:after {
+            font-size: 20px !important;
+            font-weight: bold;
+        }
+
+        /* Card hover effects */
+        .info-card {
+            transition: all 0.3s ease;
+        }
+
+        .info-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+        }
+
+        /* FAQ accordion styles */
+        .faq-item {
+            transition: all 0.3s ease;
+            border: 1px solid rgba(220, 38, 38, 0.1);
+        }
+
+        .faq-item:hover {
+            transform: translateX(10px);
+            border-color: #dc2626;
+        }
+
+        .faq-item button {
+            background: linear-gradient(to right, rgba(220, 38, 38, 0.05), transparent);
+        }
+
+        .faq-item button:hover {
+            background: linear-gradient(to right, rgba(220, 38, 38, 0.1), transparent);
+        }
+
+        .faq-answer {
+            transition: all 0.5s ease;
+            background: linear-gradient(to right, rgba(220, 38, 38, 0.02), transparent);
+        }
+
+        .faq-answer.active {
+            animation: slideDown 0.3s ease forwards;
+        }
+
+        /* Social media icons hover effect */
+        .social-icon {
+            transition: all 0.3s ease;
+        }
+
+        .social-icon:hover {
+            transform: translateY(-5px) scale(1.1);
+        }
+
+        /* Add animation for FAQ toggle */
+        @keyframes slideDown {
+            from {
+                opacity: 0;
+                transform: translateY(-10px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+    </style>
+    <style>
+        body {
+            font-family: "Noto Sans Thai", serif;
+            font-style: normal;
+            background: linear-gradient(to bottom, #f7fafc, #edf2f7);
+        }
+
+        /* Card Styles */
+        .admin-card {
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            background: rgba(255, 255, 255, 0.98);
+            border: 1px solid rgba(255, 255, 255, 0.3);
+            backdrop-filter: blur(10px);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .admin-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 4px;
+            background: linear-gradient(to right, #dc2626, #991b1b);
+            transform: scaleX(0);
+            transition: transform 0.4s ease;
+        }
+
+        .admin-card:hover::before {
+            transform: scaleX(1);
+        }
+
+        .admin-image-container {
+            aspect-ratio: 3/4;
+            /* Portrait aspect ratio */
+            overflow: hidden;
+            position: relative;
+        }
+
+        .admin-image {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            object-position: center 10%;
+            /* Adjust to focus on face */
+            transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+            filter: grayscale(20%) contrast(110%);
+        }
+
+        .admin-card:hover .admin-image {
+            transform: scale(1.05);
+            filter: grayscale(0%) contrast(100%);
+        }
+
+        /* Header Gradient */
+        .header-gradient {
+            background: linear-gradient(135deg, #dc2626 0%, #991b1b 100%);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .header-gradient::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: url('pattern.png') repeat;
+            opacity: 0.1;
+            animation: slide 20s linear infinite;
+        }
+
+        @keyframes slide {
+            from {
+                background-position: 0 0;
+            }
+
+            to {
+                background-position: 100% 100%;
+            }
+        }
+
+        /* Enhanced role badge */
+        .role-badge {
+            display: inline-block;
+            padding: 0.6rem 1.2rem;
+            border-radius: 9999px;
+            font-size: 0.875rem;
+            font-weight: 500;
+            background: linear-gradient(135deg, #dc2626, #991b1b);
+            color: white;
+            box-shadow: 0 4px 6px rgba(220, 38, 38, 0.2);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            backdrop-filter: blur(5px);
+        }
+
+        /* Enhanced info overlay */
+        .admin-info-overlay {
+            background: linear-gradient(to top,
+                    rgba(0, 0, 0, 0.9) 0%,
+                    rgba(0, 0, 0, 0.8) 40%,
+                    rgba(0, 0, 0, 0) 100%);
+            padding: 2rem 1.5rem;
+        }
+
+        /* Email hover effect */
+        .email-link {
+            transition: all 0.3s ease;
+            position: relative;
+            padding-bottom: 2px;
+        }
+
+        .email-link::after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 2px;
+            bottom: 0;
+            left: 0;
+            background-color: #dc2626;
+            transition: all 0.3s ease;
+        }
+
+        .admin-card:hover .email-link::after {
+            width: 100%;
+        }
+    </style>
+</head>
+
+<body class="bg-gray-50">
+    <!-- Navbar -->
+    <nav class="bg-red-700 shadow-lg sticky top-0 z-50">
+        <div class="max-w-6xl mx-auto px-4">
+            <div class="flex justify-between">
+                <div class="flex space-x-7">
+                    <div>
+                        <a href="index.html" class="flex items-center py-4 gap-x-3">
+                            <img src="cmtc_icon2.png" alt="logo" class="h-14 w-70 rounded-full">
+                        </a>
+                    </div>
+                </div>
+                <div class="hidden md:flex items-center space-x-3">
+                    <a href="index.html"
+                        class="py-4 px-2 text-white hover:text-red-200 transition duration-300">หน้าแรก</a>
+                    <a href="administrator.html"
+                        class="py-4 px-2 text-white font-bold border-b-4 border-red-200">ข้อมูลผู้บริหาร</a>
+                    <a href="teacher.html"
+                        class="py-4 px-2 text-white hover:text-red-200 transition duration-300">ข้อมูลบุคลากร</a>
+                    <a href="about.html"
+                        class="py-4 px-2 text-white hover:text-red-200 transition duration-300">ข้อมูลนักเรียน</a>
+                    <a href="classes.html"
+                        class="py-4 px-2 text-white hover:text-red-200 transition duration-300">ข้อมูลสาขาวิชาที่เปิดสอน</a>
+                </div>
+                <div class="md:hidden flex items-center">
+                    <button class="outline-none mobile-menu-button">
+                        <svg class="w-6 h-6 text-white hover:text-red-200" x-show="!showMenu" fill="none"
+                            stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewBox="0 0 24 24"
+                            stroke="currentColor">
+                            <path d="M4 6h16M4 12h16M4 18h16"></path>
+                        </svg>
+                    </button>
+                </div>
+            </div>
+        </div>
+        <div class="hidden mobile-menu md:hidden">
+            <ul class="px-2 pt-2 pb-3 space-y-1 sm:px-3">
+                <li><a href="index.html" 
+                    class="text-white hover:bg-red-700 block px-3 py-2 rounded-md">หน้าแรก</a></li>
+                <li><a href="administrator.html"
+                    class="bg-red-700 text-white block px-3 py-2 rounded-md">ข้อมูลผู้บริหาร</a></li>
+                <li><a href="teacher.html"
+                    class="text-white hover:bg-red-700 block px-3 py-2 rounded-md">ข้อมูลบุคลากร</a></li>
+                <li><a href="about.html"
+                    class="text-white hover:bg-red-700 block px-3 py-2 rounded-md">ข้อมูลนักเรียน</a></li>
+                <li><a href="classes.html"
+                    class="text-white hover:bg-red-700 block px-3 py-2 rounded-md">ข้อมูลสาขาวิชาที่เปิดสอน</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- Header Section -->
+    <div class="header-gradient py-20">
+        <div class="max-w-7xl mx-auto px-4 relative z-10">
+            <h1 class="text-5xl md:text-6xl font-bold text-white text-center mb-6 tracking-tight leading-tight">
+                ผู้บริหาร</h1>
+            <p class="text-xl md:text-2xl text-white/90 text-center max-w-3xl mx-auto leading-relaxed">
+                วิทยาลัยเทคนิคเชียงใหม่
+            </p>
+        </div>
+    </div>
+
+    <!-- Administrators Grid -->
+    <div class="max-w-7xl mx-auto px-4 py-20">
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10">
+            <!-- Director Card (Larger) -->
+            <div class="admin-card rounded-2xl shadow-xl overflow-hidden col-span-full lg:col-span-3 bg-white">
+                <div class="grid lg:grid-cols-2 items-center">
+                    <div class="admin-image-container h-[600px] lg:h-[700px]">
+                        <img src="รูปผู้อำนวยการ (1).png" alt="ผู้อำนวยการ" class="admin-image">
+                    </div>
+                    <div class="p-10 flex flex-col justify-center">
+                        <span class="text-red-600 font-semibold mb-4">ผู้อำนายการ</span>
+                        <h3 class="text-4xl font-bold text-gray-800 mb-4">ดร.วัชรพงศ์ ฝั้นติ๊บ</h3>
+                        <span class="role-badge text-lg mb-6">ผู้อำนวยการวิทยาลัยเทคนิคเชียงใหม่</span>
+                        <p class="text-gray-600 mb-8 leading-relaxed">
+                            "มุ่งมั่นพัฒนาการศึกษา เพื่อสร้างบุคลากรที่มีคุณภาพสู่สังคม"
+                        </p>
+                        <div class="flex items-center text-gray-600 hover:text-red-600 transition-colors">
+                            <svg class="w-6 h-6 mr-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                    d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
+                            </svg>
+                            <span class="email-link text-lg">director@cmtc.ac.th</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Deputy Directors Cards -->
+            <div class="admin-card rounded-2xl shadow-lg overflow-hidden">
+                <div class="admin-image-container h-[500px]">
+                    <img src="38318_2005150992707.jpg" alt="รองผู้อำนวยการ 1" class="admin-image">
+                    <div class="admin-info-overlay absolute bottom-0 left-0 right-0">
+                        <h3 class="text-2xl font-bold text-white mb-3">ดร.ธีรวุธ ยะอูป</h3>
+                        <span class="role-badge">รองผู้อำนวยการ ฝ่ายบริหารทรัพยากร</span>
+                    </div>
+                </div>
+                <div class="p-6 bg-white">
+                    <div class="flex items-center text-gray-600 hover:text-red-600 transition-colors">
+                        <svg class="w-5 h-5 mr-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
+                        </svg>
+                        <span class="email-link">deputy1@cmtc.ac.th</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Deputy Directors Cards -->
+            <div class="admin-card rounded-2xl shadow-lg overflow-hidden">
+                <div class="admin-image-container h-[500px]">
+                    <img src="38318_20051810103019 (1).jpg" alt="รองผู้อำนวยการ 1" class="admin-image">
+                    <div class="admin-info-overlay absolute bottom-0 left-0 right-0">
+                        <h3 class="text-2xl font-bold text-white mb-3">นายชรันต์ยุทธ์ บุญยง</h3>
+                        <span class="role-badge">รองผู้อำนวยการ ฝ่ายวิชาการ</span>
+                    </div>
+                </div>
+                <div class="p-6 bg-white">
+                    <div class="flex items-center text-gray-600 hover:text-red-600 transition-colors">
+                        <svg class="w-5 h-5 mr-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
+                        </svg>
+                        <span class="email-link">deputy1@cmtc.ac.th</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Deputy Directors Cards -->
+            <div class="admin-card rounded-2xl shadow-lg overflow-hidden">
+                <div class="admin-image-container h-[500px]">
+                    <img src="นางสาวอรณี-จริยา-1-227x300 (1).png" alt="รองผู้อำนวยการ 1" class="admin-image">
+                    <div class="admin-info-overlay absolute bottom-0 left-0 right-0">
+                        <h3 class="text-2xl font-bold text-white mb-3">นางสาวอรณี จริยา </h3>
+                        <span class="role-badge">รองผู้อำนวยการ ฝ่ายแผนงานและความร่วมมือ</span>
+                    </div>
+                </div>
+                <div class="p-6 bg-white">
+                    <div class="flex items-center text-gray-600 hover:text-red-600 transition-colors">
+                        <svg class="w-5 h-5 mr-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
+                        </svg>
+                        <span class="email-link">deputy1@cmtc.ac.th</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Deputy Directors Cards -->
+            <div class="admin-card rounded-2xl shadow-lg overflow-hidden">
+                <div class="admin-image-container h-[500px]">
+                    <img src="นางศศิกาญจน์-เรือนศาสตร์-1-225x300 (1).jpg" alt="รองผู้อำนวยการ 1" class="admin-image">
+                    <div class="admin-info-overlay absolute bottom-0 left-0 right-0">
+                        <h3 class="text-2xl font-bold text-white mb-3">นางศศิกาญจน์ เรือนศาสตร์
+
+                        </h3>
+                        <span class="role-badge">รองผู้อำนวยการ ฝ่ายพัฒนากิจการนักเรียน นักศึกษา </span>
+                    </div>
+                </div>
+                <div class="p-6 bg-white">
+                    <div class="flex items-center text-gray-600 hover:text-red-600 transition-colors">
+                        <svg class="w-5 h-5 mr-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
+                        </svg>
+                        <span class="email-link">deputy1@cmtc.ac.th</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- ส่วนช่องทางติดต่อ -->
+    <div class="bg-gray-50 py-7">
+        <div class="max-w-7xl mx-auto px-4">
+            <h2 class="text-4xl font-bold text-red-700 mb-12 text-center">ติดตามเราได้ที่</h2>
+            <div class="flex justify-center space-x-10">
+                <!-- Facebook -->
+                <a href="#" class="social-icon group">
+                    <div class="bg-white p-4 rounded-full shadow-lg group-hover:bg-red-600 transition-all duration-300">
+                        <svg class="w-8 h-8 text-gray-600 group-hover:text-white" fill="currentColor"
+                            viewBox="0 0 24 24">
+                            <path
+                                d="M22 12c0-5.523-4.477-10-10-10S2 6.477 2 12c0 4.991 3.657 9.128 8.438 9.878v-6.987h-2.54V12h2.54V9.797c0-2.506 1.492-3.89 3.777-3.89 1.094 0 2.238.195 2.238.195v2.46h-1.26c-1.243 0-1.63.771-1.63 1.562V12h2.773l-.443 2.89h-2.33v6.988C18.343 21.128 22 16.991 22 12z" />
+                        </svg>
+                    </div>
+
+                </a>
+
+                <!-- Line -->
+                <a href="#" class="social-icon group">
+                    <div class="bg-white p-4 rounded-full shadow-lg group-hover:bg-red-600 transition-all duration-300">
+                        <svg class="w-8 h-8 text-gray-600 group-hover:text-white" fill="currentColor"
+                            viewBox="0 0 24 24">
+                            <path
+                                d="M19.365 9.863c.349 0 .63.285.631.631 0 .345-.281.63-.63.63H17.61v1.125h1.755c.349 0 .63.283.63.63 0 .344-.281.629-.63.629h-2.386c-.345 0-.627-.285-.627-.629V8.108c0-.345.282-.63.63-.63h2.386c.346 0 .627.285.627.63 0 .349-.281.63-.63.63H17.61v1.125h1.755zm-3.855 3.016c0 .27-.174.51-.432.596-.064.021-.133.031-.199.031-.211 0-.391-.09-.51-.25l-2.443-3.317v2.94c0 .344-.279.629-.631.629-.346 0-.626-.285-.626-.629V8.108c0-.27.173-.51.43-.595.06-.023.136-.033.194-.033.195 0 .375.104.495.254l2.462 3.33V8.108c0-.345.282-.63.63-.63.345 0 .63.285.63.63v4.771zm-5.741 0c0 .344-.282.629-.631.629-.345 0-.627-.285-.627-.629V8.108c0-.345.282-.63.63-.63.346 0 .628.285.628.63v4.771zm-2.466.629H4.917c-.345 0-.63-.285-.63-.629V8.108c0-.345.285-.63.63-.63.348 0 .63.285.63.63v4.141h1.756c.348 0 .629.283.629.63 0 .344-.282.629-.629.629M24 10.314C24 4.943 18.615.572 12 .572S0 4.943 0 10.314c0 4.811 4.27 8.842 10.035 9.608.391.082.923.258 1.058.59.12.301.079.766.038 1.08l-.164 1.02c-.045.301-.24 1.186 1.049.645 1.291-.539 6.916-4.078 9.436-6.975C23.176 14.393 24 12.458 24 10.314" />
+                        </svg>
+                    </div>
+
+                </a>
+
+                <!-- YouTube -->
+                <a href="#" class="social-icon group">
+                    <div class="bg-white p-4 rounded-full shadow-lg group-hover:bg-red-600 transition-all duration-300">
+                        <svg class="w-8 h-8 text-gray-600 group-hover:text-white" fill="currentColor"
+                            viewBox="0 0 24 24">
+                            <path
+                                d="M19.615 3.184c-3.604-.246-11.631-.245-15.23 0-3.897.266-4.356 2.62-4.385 8.816.029 6.185.484 8.549 4.385 8.816 3.6.245 11.626.246 15.23 0 3.897-.266 4.356-2.62 4.385-8.816-.029-6.185-.484-8.549-4.385-8.816zm-10.615 12.816v-8l8 3.993-8 4.007z" />
+                        </svg>
+                    </div>
+
+                </a>
+
+                <!-- TikTok -->
+                <a href="#" class="social-icon group">
+                    <div class="bg-white p-4 rounded-full shadow-lg group-hover:bg-red-600 transition-all duration-300">
+                        <svg class="w-8 h-8 text-gray-600 group-hover:text-white" fill="currentColor"
+                            viewBox="0 0 24 24">
+                            <path
+                                d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z" />
+                        </svg>
+                    </div>
+                </a>
+
+                <!-- TikTok -->
+                <a href="#" class="social-icon group">
+                    <div class="bg-white p-4 rounded-full shadow-lg group-hover:bg-red-600 transition-all duration-300">
+                        <svg class="w-8 h-8 text-gray-600 group-hover:text-white" fill="currentColor"
+                            viewBox="0 0 24 24">
+                            <path
+                                d="M19.59 6.69a4.83 4.83 0 01-3.77-4.25V2h-3.45v13.67a2.89 2.89 0 01-5.2 1.74 2.89 2.89 0 012.31-4.64 2.93 2.93 0 01.88.13V9.4a6.84 6.84 0 00-1-.05A6.33 6.33 0 005 20.1a6.34 6.34 0 0010.86-4.43v-7a8.16 8.16 0 004.77 1.52v-3.4a4.85 4.85 0 01-1-.1z" />
+                        </svg>
+                    </div>
+                </a>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Mobile menu toggle
+        const btn = document.querySelector("button.mobile-menu-button");
+        const menu = document.querySelector(".mobile-menu");
+        btn.addEventListener("click", () => {
+            menu.classList.toggle("hidden");
+        });
+    </script>
+</body>
+
+</html>
